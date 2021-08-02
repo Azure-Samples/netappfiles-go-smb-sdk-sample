@@ -1,7 +1,20 @@
 ## Azure NetAppFiles SDK Sample for Go Changelog
 
+- [1.0.2 (2021-08-02)](#102-2021-08-02)
 - [1.0.1 (2020-10-12)](#101-2020-10-12)
 - [1.0.0 (2020-02-07)](#100-2020-02-07)
+
+# 1.0.2 (2021-08-02)
+
+*Features*
+* API Version bump up
+* Added instructions for setting up Active Directory infrastructure
+
+*Bug Fixes*
+* N/A
+
+*Breaking Changes*
+* N/A
 
 # 1.0.1 (2020-10-12)
 
