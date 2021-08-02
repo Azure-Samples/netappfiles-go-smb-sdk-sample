@@ -29,12 +29,13 @@ If you don't already have a Microsoft Azure subscription, you can get a FREE tri
 ## Prerequisites
 
 1. Go installed \(if not installed yet, follow the [official instructions](https://golang.org/dl/)\)
-1. Azure Subscription
-1. Subscription needs to be whitelisted for Azure NetApp Files. For more information, please refer to [this](https://docs.microsoft.com/azure/azure-netapp-files/azure-netapp-files-register#waitlist) document.
-1. Resource Group created
-1. Virtual Network with a delegated subnet to Microsoft.Netapp/volumes resource. For more information, please refer to [Guidelines for Azure NetApp Files network planning](https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-network-topologies)
-1. Adjust variable contents within `var()` block at `example.go` file to match your environment
-1. For this sample Go console application work, we need to authenticate and the chosen method for this sample is using service principals.
+2. Azure Subscription
+3. Subscription needs to be whitelisted for Azure NetApp Files. For more information, please refer to [this](https://docs.microsoft.com/azure/azure-netapp-files/azure-netapp-files-register#waitlist) document.
+4. Resource Group created
+5. Virtual Network with a delegated subnet to Microsoft.Netapp/volumes resource. For more information, please refer to [Guidelines for Azure NetApp Files network planning](https://docs.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-network-topologies)
+6. Active Directory infrastructure setup with one or more DNS servers from the AD domain (usually the Domain Controllers) available in the **same virtual network** where you're setting up Azure NetApp Files. If you want to setup an Active Directory test environment, please refer to [Create a new Windows VM and create a new AD Forest, Domain and DC](https://github.com/Azure/azure-quickstart-templates/tree/master/application-workloads/active-directory/active-directory-new-domain) for a quick setup, then you can create the subnet delegated to Microsoft.Netapp/volumes in the vnet that is created.
+7. Adjust variable contents within `var()` block at `example.go` file to match your environment
+8. For this sample Go console application work, we need to authenticate and the chosen method for this sample is using service principals.
    1. For this sample Go console application work, we need to authenticate and the chosen method for this sample is using service principals:
     * Within an [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/quickstart) session, make sure you're logged on at the subscription where you want to be associated with the service principal by default
 
