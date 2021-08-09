@@ -115,7 +115,7 @@ func main() {
 
 	// Building Active Directory List - please note that only one AD configuration is permitted per subscription and region
 	activeDirectories := []netapp.ActiveDirectory{
-		netapp.ActiveDirectory{
+		{
 			DNS:           &dnsList,
 			Domain:        &adFQDN,
 			Username:      &domainJoinUserName,
@@ -131,7 +131,7 @@ func main() {
 		return
 	}
 	acccountID = *account.ID
-	utils.ConsoleOutput(fmt.Sprintf("Account successfully created, resource id: %v", *account.ID))
+	utils.ConsoleOutput(fmt.Sprintf("Account successfully created, resource id: %v", acccountID))
 
 	// Capacity pool creation
 	utils.ConsoleOutput("Creating Capacity Pool...")
