@@ -334,3 +334,4 @@ ASALocalRun/
 /netappfiles-go-smb-sdk-sample/netappfiles-go-smb-sdk-sample
 /netappfiles-go-smb-sdk-sample/netappfiles-go-smb-sdk-sample.*
 azureauth.json
+.vscode
