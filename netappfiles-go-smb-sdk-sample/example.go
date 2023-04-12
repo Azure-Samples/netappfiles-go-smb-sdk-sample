@@ -22,8 +22,9 @@ import (
 
 	"github.com/Azure-Samples/netappfiles-go-smb-sdk-sample/netappfiles-go-smb-sdk-sample/internal/sdkutils"
 	"github.com/Azure-Samples/netappfiles-go-smb-sdk-sample/netappfiles-go-smb-sdk-sample/internal/utils"
-	"github.com/Azure/azure-sdk-for-go/profiles/latest/netapp/mgmt/netapp"
-	"github.com/Azure/go-autorest/autorest/to"
+
+	"github.com/Azure/azure-sdk-for-go/sdk/azcore/to"
+	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/netapp/armnetapp"
 	"github.com/yelinaung/go-haikunator"
 )
 
@@ -46,8 +47,8 @@ var (
 	protocolTypes                = []string{"CIFS"} // Multiple NFS protocol types are not supported at the moment this sample was written
 	smbVolumeName         string = fmt.Sprintf("SMB-Vol-%v-%v", anfAccountName, capacityPoolName)
 	sampleTags                   = map[string]*string{
-		"Author":  to.StringPtr("ANF Go SMB SDK Sample"),
-		"Service": to.StringPtr("Azure Netapp Files"),
+		"Author":  to.Ptr("ANF Go SMB SDK Sample"),
+		"Service": to.Ptr("Azure Netapp Files"),
 	}
 
 	// SMB related variables
@@ -114,7 +115,7 @@ func main() {
 	utils.ConsoleOutput("Creating Azure NetApp Files account...")
 
 	// Building Active Directory List - please note that only one AD configuration is permitted per subscription and region
-	activeDirectories := []netapp.ActiveDirectory{
+	activeDirectories := []*armnetapp.ActiveDirectory{
 		{
 			DNS:           &dnsList,
 			Domain:        &adFQDN,
@@ -170,7 +171,7 @@ func main() {
 		false,
 		false,
 		sampleTags,
-		netapp.VolumePropertiesDataProtection{}, // This empty object is provided as nil since dataprotection is not scope of this sample
+		armnetapp.VolumePropertiesDataProtection{}, // This empty object is provided as nil since dataprotection is not scope of this sample
 	)
 
 	if err != nil {
@@ -182,7 +183,7 @@ func main() {
 	smbVolumeID = *smbVolume.ID
 	utils.ConsoleOutput(fmt.Sprintf("SMB volume successfully created, resource id: %v", smbVolumeID))
 
-	mountTargets := *smbVolume.MountTargets
+	mountTargets := smbVolume.Properties.MountTargets
 	//*smbVolume.MountTargets[0].SmbServerFqdn
 	utils.ConsoleOutput(fmt.Sprintf("\t====> SMB Server FQDN: %v", *mountTargets[0].SmbServerFqdn))
 }
